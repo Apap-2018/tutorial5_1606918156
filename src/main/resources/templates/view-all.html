@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<head>
+		<object th:include="fragments/fragment :: title" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+
+	<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	
+		<h3> Semua Dealer </h3><br>
+		
+	    <div th:each="dealer: ${dealerCarMap}">
+		    <tr  th:if="${dealer.value == '[]'}">
+		     	<td th:text="${dealer.key} + ':'" />
+		     	<td>Tidak ada mobil yang dijual oleh dealer ini </td>
+		    </tr><br>
+		    
+		    <tr th:if="${dealer.value != '[]'}">
+		     	<td th:text="${dealer.key}" />
+		     	<td th:text="${dealer.value}" /><br>
+		    </tr><br>
+		</div>
+		
+		<a th:href="@{/}">
+			<button type="submit"> Kembali </button>
+		</a>
+		
+	</body>
+</html>
